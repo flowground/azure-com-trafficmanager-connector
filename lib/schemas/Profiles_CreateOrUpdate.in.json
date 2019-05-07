@@ -1,0 +1,385 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "profileName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "The core properties of ARM resources",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource. Ex- Microsoft.Network/trafficManagerProfiles.",
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM tracked top level resource",
+                    "properties": {
+                        "location": {
+                            "description": "The Azure Region where the resource lives",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags.",
+                            "type": "object",
+                            "x-ms-mutability": [
+                                "read",
+                                "create",
+                                "update"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Class representing a Traffic Manager profile.",
+            "properties": {
+                "properties": {
+                    "description": "The properties of the Traffic Manager profile.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "dnsConfig": {
+                            "description": "The DNS settings of the Traffic Manager profile.",
+                            "properties": {
+                                "fqdn": {
+                                    "description": "The fully-qualified domain name (FQDN) of the Traffic Manager profile. This is formed from the concatenation of the RelativeName with the DNS domain used by Azure Traffic Manager.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "relativeName": {
+                                    "description": "The relative DNS name provided by this Traffic Manager profile. This value is combined with the DNS domain name used by Azure Traffic Manager to form the fully-qualified domain name (FQDN) of the profile.",
+                                    "type": "string"
+                                },
+                                "ttl": {
+                                    "description": "The DNS Time-To-Live (TTL), in seconds. This informs the local DNS resolvers and DNS clients how long to cache DNS responses provided by this Traffic Manager profile.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "endpoints": {
+                            "description": "The list of endpoints in the Traffic Manager profile.",
+                            "items": {
+                                "allOf": [
+                                    {
+                                        "allOf": [
+                                            {
+                                                "description": "The core properties of ARM resources",
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{resourceName}",
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "description": "The name of the resource",
+                                                        "type": "string"
+                                                    },
+                                                    "type": {
+                                                        "description": "The type of the resource. Ex- Microsoft.Network/trafficManagerProfiles.",
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "x-ms-azure-resource": true,
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "description": "The resource model definition for a ARM proxy resource. It will have everything other than required location and tags"
+                                    }
+                                ],
+                                "description": "Class representing a Traffic Manager endpoint.",
+                                "properties": {
+                                    "properties": {
+                                        "description": "The properties of the Traffic Manager endpoint.",
+                                        "x-ms-client-flatten": true,
+                                        "properties": {
+                                            "customHeaders": {
+                                                "description": "List of custom headers.",
+                                                "items": {
+                                                    "description": "Custom header name and value.",
+                                                    "properties": {
+                                                        "name": {
+                                                            "description": "Header name.",
+                                                            "type": "string"
+                                                        },
+                                                        "value": {
+                                                            "description": "Header value.",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "endpointLocation": {
+                                                "description": "Specifies the location of the external or nested endpoints when using the 'Performance' traffic routing method.",
+                                                "type": "string"
+                                            },
+                                            "endpointMonitorStatus": {
+                                                "description": "The monitoring status of the endpoint.",
+                                                "enum": [
+                                                    "CheckingEndpoint",
+                                                    "Online",
+                                                    "Degraded",
+                                                    "Disabled",
+                                                    "Inactive",
+                                                    "Stopped"
+                                                ],
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": true,
+                                                    "name": "EndpointMonitorStatus"
+                                                }
+                                            },
+                                            "endpointStatus": {
+                                                "description": "The status of the endpoint. If the endpoint is Enabled, it is probed for endpoint health and is included in the traffic routing method.",
+                                                "enum": [
+                                                    "Enabled",
+                                                    "Disabled"
+                                                ],
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": true,
+                                                    "name": "EndpointStatus"
+                                                }
+                                            },
+                                            "geoMapping": {
+                                                "description": "The list of countries/regions mapped to this endpoint when using the 'Geographic' traffic routing method. Please consult Traffic Manager Geographic documentation for a full list of accepted values.",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "minChildEndpoints": {
+                                                "description": "The minimum number of endpoints that must be available in the child profile in order for the parent profile to be considered available. Only applicable to endpoint of type 'NestedEndpoints'.",
+                                                "format": "int64",
+                                                "type": "integer"
+                                            },
+                                            "priority": {
+                                                "description": "The priority of this endpoint when using the 'Priority' traffic routing method. Possible values are from 1 to 1000, lower values represent higher priority. This is an optional parameter.  If specified, it must be specified on all endpoints, and no two endpoints can share the same priority value.",
+                                                "format": "int64",
+                                                "type": "integer"
+                                            },
+                                            "subnets": {
+                                                "description": "The list of subnets, IP addresses, and/or address ranges mapped to this endpoint when using the 'Subnet' traffic routing method. An empty list will match all ranges not covered by other endpoints.",
+                                                "items": {
+                                                    "description": "Subnet first address, scope, and/or last address.",
+                                                    "properties": {
+                                                        "first": {
+                                                            "description": "First address in the subnet.",
+                                                            "type": "string"
+                                                        },
+                                                        "last": {
+                                                            "description": "Last address in the subnet.",
+                                                            "type": "string"
+                                                        },
+                                                        "scope": {
+                                                            "description": "Block size (number of leading bits in the subnet mask).",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "target": {
+                                                "description": "The fully-qualified DNS name or IP address of the endpoint. Traffic Manager returns this value in DNS responses to direct traffic to this endpoint.",
+                                                "type": "string"
+                                            },
+                                            "targetResourceId": {
+                                                "description": "The Azure Resource URI of the of the endpoint. Not applicable to endpoints of type 'ExternalEndpoints'.",
+                                                "type": "string"
+                                            },
+                                            "weight": {
+                                                "description": "The weight of this endpoint when using the 'Weighted' traffic routing method. Possible values are from 1 to 1000.",
+                                                "format": "int64",
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "maxReturn": {
+                            "description": "Maximum number of endpoints to be returned for MultiValue routing type.",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "monitorConfig": {
+                            "description": "The endpoint monitoring settings of the Traffic Manager profile.",
+                            "properties": {
+                                "customHeaders": {
+                                    "description": "List of custom headers.",
+                                    "items": {
+                                        "description": "Custom header name and value.",
+                                        "properties": {
+                                            "name": {
+                                                "description": "Header name.",
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "description": "Header value.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "expectedStatusCodeRanges": {
+                                    "description": "List of expected status code ranges.",
+                                    "items": {
+                                        "description": "Min and max value of a status code range.",
+                                        "properties": {
+                                            "max": {
+                                                "description": "Max status code.",
+                                                "type": "integer"
+                                            },
+                                            "min": {
+                                                "description": "Min status code.",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "intervalInSeconds": {
+                                    "description": "The monitor interval for endpoints in this profile. This is the interval at which Traffic Manager will check the health of each endpoint in this profile.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "path": {
+                                    "description": "The path relative to the endpoint domain name used to probe for endpoint health.",
+                                    "type": "string"
+                                },
+                                "port": {
+                                    "description": "The TCP port used to probe for endpoint health.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "profileMonitorStatus": {
+                                    "description": "The profile-level monitoring status of the Traffic Manager profile.",
+                                    "enum": [
+                                        "CheckingEndpoints",
+                                        "Online",
+                                        "Degraded",
+                                        "Disabled",
+                                        "Inactive"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "ProfileMonitorStatus"
+                                    }
+                                },
+                                "protocol": {
+                                    "description": "The protocol (HTTP, HTTPS or TCP) used to probe for endpoint health.",
+                                    "enum": [
+                                        "HTTP",
+                                        "HTTPS",
+                                        "TCP"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "MonitorProtocol"
+                                    }
+                                },
+                                "timeoutInSeconds": {
+                                    "description": "The monitor timeout for endpoints in this profile. This is the time that Traffic Manager allows endpoints in this profile to response to the health check.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "toleratedNumberOfFailures": {
+                                    "description": "The number of consecutive failed health check that Traffic Manager tolerates before declaring an endpoint in this profile Degraded after the next failed health check.",
+                                    "format": "int64",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "profileStatus": {
+                            "description": "The status of the Traffic Manager profile.",
+                            "enum": [
+                                "Enabled",
+                                "Disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProfileStatus"
+                            }
+                        },
+                        "trafficRoutingMethod": {
+                            "description": "The traffic routing method of the Traffic Manager profile.",
+                            "enum": [
+                                "Performance",
+                                "Priority",
+                                "Weighted",
+                                "Geographic",
+                                "MultiValue",
+                                "Subnet"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "TrafficRoutingMethod"
+                            }
+                        },
+                        "trafficViewEnrollmentStatus": {
+                            "description": "Indicates whether Traffic View is 'Enabled' or 'Disabled' for the Traffic Manager profile. Null, indicates 'Disabled'. Enabling this feature will increase the cost of the Traffic Manage profile.",
+                            "enum": [
+                                "Enabled",
+                                "Disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "TrafficViewEnrollmentStatus"
+                            }
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

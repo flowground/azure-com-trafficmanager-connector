@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Parameters supplied to check Traffic Manager name operation.",
+            "properties": {
+                "name": {
+                    "description": "The name of the resource.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the resource.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

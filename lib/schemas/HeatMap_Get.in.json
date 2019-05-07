@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "profileName": {
+            "required": true,
+            "type": "string"
+        },
+        "heatMapType": {
+            "required": true,
+            "type": "string",
+            "enum": [
+                "default"
+            ]
+        },
+        "topLeft": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "double",
+                "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "botRight": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "double",
+                "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

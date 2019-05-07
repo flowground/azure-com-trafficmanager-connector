@@ -1,0 +1,29 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "profileName": {
+            "required": true,
+            "type": "string"
+        },
+        "endpointType": {
+            "required": true,
+            "type": "string"
+        },
+        "endpointName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
