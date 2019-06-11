@@ -5,7 +5,7 @@
 A generated **flow**ground connector for the TrafficManagerManagementClient API (version 2018-04-01).
 
 Generated from: https://api.apis.guru/v2/specs/azure.com/trafficmanager/2018-04-01/swagger.json<br/>
-Generated at: 2019-05-07T17:39:20+03:00
+Generated at: 2019-06-11T18:14:33+03:00
 
 ## API Description
 
